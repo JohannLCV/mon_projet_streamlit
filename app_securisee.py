@@ -93,5 +93,3 @@ else:
         for idx, img_url in enumerate(sample_images):
             with cols[idx % 3]:
                 st.image(img_url, caption=f"Image {idx+1}", use_container_width=True)
-
-print(st.session_date)
