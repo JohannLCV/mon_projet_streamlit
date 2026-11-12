@@ -9,7 +9,7 @@ import seaborn as sns
 st.title("Dashboard Vols ✈️")
 
 # --- Chargement des données (mises en cache) ---
-@st.cache_data
+@st.cache_data   # décorateur qui indique à st de mettre en cache le résultat du chargement (pas de reDL du csv à chaque clic de bouton)
 def load_data():
     url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/flights.csv"
     return pd.read_csv(url)
@@ -32,7 +32,7 @@ st.dataframe(df_filtre)
 
 # --- Indicateur : total de passagers sur la période ---
 total_passagers = df_filtre["passengers"].sum()
-st.metric("Nombre total de passagers", f"{total_passagers:,}".replace(",", " "))
+st.metric("Nombre total de passagers", f"{total_passagers:,}".replace(",", " "))  # permet d'avoir un espace comme séparateur de millier
 
 # --- Graphique en lignes (Plotly) : évolution annuelle ---
 evolution = df_filtre.groupby("year")["passengers"].sum().reset_index()
